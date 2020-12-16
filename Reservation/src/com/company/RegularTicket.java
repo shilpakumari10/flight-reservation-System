@@ -1,46 +1,72 @@
 package com.company;
 
-public class RegularTicket {
-    public String PNRNumber;
-    public String departureLocation;
-    public String destinationLocation;
-    public flight flight;
-    public float ticketPrize;
-    public boolean isTicketConfirmed;
-    public boolean food;
-    public boolean water;
-    public boolean snacks;
+public class RegularTicket extends Ticket {
 
-    public RegularTicket(String PNRNumber, String departureLocation, String destinationLocation, float prizeOfTicket,
-                         boolean food, boolean water, boolean snacks){
-        this.PNRNumber=PNRNumber;
-        this.departureLocation=departureLocation;
-        this.destinationLocation=destinationLocation;
-        this.ticketPrize=prizeOfTicket;
+   private boolean food;
+    private boolean water;
+    private boolean snacks;
+
+    public RegularTicket(String departureLocation, String destinationLocation,String dateAndTimeOfDeparture,
+                         String dateAndTimeOfDestination, float ticketPrize,
+                         boolean food, boolean water, boolean snacks,
+                         flight flight, Passenger  passenger){
+        super(destinationLocation,departureLocation, dateAndTimeOfDeparture, dateAndTimeOfDestination ,ticketPrize,flight,passenger);
         this.water=water;
         this.food=food;
         this.snacks=snacks;
 
+
+
+
     }
 
+    // method statusOfTicket to book ticket and return PNR NUmber
+    public String statusOfTicket(){
+        if(this.flight.getNumOfSeatsBooked()>this.flight.getCapacity()){
+            this.isTicketConfirmed=false;
 
-
-    public String StatusOfTicket(boolean isTicketConfirmed){
-        if (isTicketConfirmed)
-            return "Confirmed";
-        else
-            return "Cancelled";
+            return "Can't book Seat.";
+        }
+        else{
+            this.isTicketConfirmed=true;
+            this.flight.updateNumOfSeatsBooked();
+            System.out.println(passenger.getContactDetails());
+            System.out.println(this.passenger.getAddressDetails());
+            System.out.println(this.flight.getFlightDetails());
+            System.out.println(this.ticketDetails());
+            return "PNR Number: "+PNRNumber;
+        }
     }
 
-    public void cancelTicket(){
+    @Override
+    String durationOfJourney() {
+        return null;
+    }
+
+    //method to cancel Ticket
+    public String cancelTicket(){
         isTicketConfirmed=false;
+        this.flight.setNumOfSeatsBooked((this.flight.getNumOfSeatsBooked())-1);
+        return "Cancelled";
     }
 
+    // method to return ticket details
+    public String ticketDetails(){
+        return "Ticket type: Regular Ticket"+ ", Seat Number: "+this.flight.getNumOfSeatsBooked()+ ", Status of Ticket:" +(isTicketConfirmed?"Confirmed":"Cancelled");
+    }
+
+
+
+
+
+    //method to return availed sevices by passenger
     public String availedServices(){
-        return "Availed Services are" + (food ?" Food":"" )+(water ?", Water":"")+ (snacks ?", Snacks":"") ;
+        return "Availed Services are" + (food ?"Food":"" )+(water ?", Water":"")+ (snacks ?", Snacks":"") ;
     }
 
-    private void updateServices(boolean _food, boolean _water, boolean _snacks){
+
+    // nethod to update availed services by passenger
+    public void updateServices(boolean _food, boolean _water, boolean _snacks){
         food=_food;
         water=_water;
         snacks=_snacks;
@@ -48,6 +74,27 @@ public class RegularTicket {
     }
 
 
+    // getter and setters for availed services
+    public boolean isSnacks() {
+        return snacks;
+    }
+
+    public boolean isWater() {
+        return water;
+    }
+
+    public boolean isFood() {
+        return food;
+    }
+    public void setFood(boolean food){
+        this.food=food;
+    }
+    public void setWater(boolean water){
+        this.water=water;
+    }
+    public  void setSnacks(boolean snacks){
+        this.snacks=snacks;
+    }
 
 
 

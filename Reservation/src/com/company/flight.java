@@ -19,6 +19,7 @@ public class flight {
             this.dateOfDestination=dateOfDestination;
             this.timeOfDeparture=timeOfDeparture;
             this.timeOfDestination=timeOfDestination;
+
         }
 
         public flight(flight flight){
@@ -28,7 +29,24 @@ public class flight {
             numOfSeatsBooked=flight.numOfSeatsBooked;
         }
 
-        public String getFlightDetails(){
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getNumOfSeatsBooked() {
+        return numOfSeatsBooked;
+    }
+
+    public void setNumOfSeatsBooked(int numOfSeatsBooked) {
+        this.numOfSeatsBooked = numOfSeatsBooked;
+    }
+
+    public String getFlightDetails(){
+        System.out.println("-------FLIGHT DETAILS---------");
             return "Flight number: "+ flightNumber +", Airline of flight: "+airlineOfFlight+", Capacity: " +capacity+", Number of Seats: "+numOfSeatsBooked;
 
         }

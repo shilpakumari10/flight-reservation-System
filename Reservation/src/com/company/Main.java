@@ -5,44 +5,29 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Address address1= new Address("Vijaynagar","Bangalore","Karnataka");
-           System.out.println("-------Address Details---------");
-           System.out.println(address1.getAddressDetails());
+        // CREATING OBJECTS
 
-        Contact contact1= new Contact("Shilpa","ynnej0895@gmail.com","123456789");
-           System.out.println("-------Contact  Details------");
-           System.out.println(contact1.getContactDetails());
+        Passenger passenger= new Passenger("Anjana nagar", "Mangalore","Karnataka",
+                "Jenny", "586624698","jenny10@gmail.com");
 
 
-           RegularTicket regTicket= new RegularTicket("7411","Delhi","Bangalore",2500,
-                true, true, true);
-            System.out.println("---------Regular Tickets-------");
-            System.out.println("PNR: "+regTicket.PNRNumber);
-            System.out.print("DepartureLocation: "+regTicket.departureLocation);
-            System.out.println(" ,  DestinationLocation: "+regTicket.destinationLocation);
-            System.out.println(regTicket.availedServices());
-            System.out.println("TicketConfirmed: "+regTicket.isTicketConfirmed);
+        flight flight1=new flight(3278,"Indigo",100,"11.08.2020","11.08.2020","06:20","10:00");
 
 
 
-        TouristTicket tourTicket= new TouristTicket("9864","Mumbai","Patna",5000," Taj, VayuVihar");
-        System.out.println("---------Get TouristTicket Details------------");
-        System.out.println("PNR: "+regTicket.PNRNumber);
-        System.out.print("DepartureLocation: "+regTicket.departureLocation);
-        System.out.println(" ,  DestinationLocation: "+regTicket.destinationLocation);
-        System.out.println("Prize: "+ tourTicket.ticketPrize);
-        System.out.println("HotelAddress:"+tourTicket.touristHotelAddress );
-        System.out.println("TicketConfirmed: "+tourTicket.StatusOfTicket(true));
+        Ticket ticket1= new RegularTicket("Mangalore", "Delhi", "18:12:2020 06:20:49",
+                "18:12:2020 10:20:00", 4000, true, true, false, flight1, passenger);
 
-        flight flight=new flight(8548,"GoAir",120,"09/12/2020", "09/12/2020",
-                "6:20","9:10");
-        System.out.println("---------Get Flight Details------------");
-        System.out.println(flight.getFlightDetails());
-        System.out.println("Availability: "+flight.checkAvailabilityOfSeats());
-
-
-
+        printTicketDetails(ticket1);
 
 
     }
-}
+
+    //function to print Ticket details
+    public  static void printTicketDetails(Ticket ticket){
+        System.out.println(ticket.statusOfTicket());
+    }
+
+
+    }
+
