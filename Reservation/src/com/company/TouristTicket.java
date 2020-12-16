@@ -57,21 +57,21 @@ public class TouristTicket extends Ticket {
 
     //method to add tourist location
     public void addTouristLocation(String location){
-        for(int i=0;i<5;i++){
+        for(int i=0;i<8;i++){
             if(touristLocations[i]==null){
                 touristLocations[i]=location;
 
                 break;
             }
             else{
-                System.out.print("Cant add location");
+                System.out.print("Location cannot be Added");
             }
         }
     }
 
     //method to remove tourist location
     public void removeLocation(String location){
-        for(int i=0;i<5;i++){
+        for(int i=0;i<8;i++){
             if(touristLocations[i].equals(location)){
                 touristLocations[i]=null;
                 break;
